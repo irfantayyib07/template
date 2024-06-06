@@ -55,3 +55,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 2 npm install @mui/material-nextjs @emotion/cache
 
 - checkout this link (https://mui.com/material-ui/integrations/nextjs/)
+
+3 npm install -D prettier
+- added format script in package.json
+- added .prettierrc.json and .prettierignore files

@@ -1,26 +1,26 @@
 [
-    {
-        "orderTitle": "vase 125.00",
-        "employeeName": "Mark",
-        "customerPrice": "$125.00",
-        "remainingAmount": "-$0.50"
-    },
-    {
-        "orderTitle": "lamp 85.00",
-        "employeeName": "Jane",
-        "customerPrice": "$85.00",
-        "remainingAmount": "$0.00"
-    },
-    {
-        "orderTitle": "table 200.00",
-        "employeeName": "John",
-        "customerPrice": "$200.00",
-        "remainingAmount": "$1.00"
-    },
-    {
-        "orderTitle": "vista 125.00",
-        "employeeName": "Mark",
-        "customerPrice": "$1435.00",
-        "remainingAmount": "-$0.50"
-    }
+ {
+  "orderTitle": "vase 125.00",
+  "employeeName": "Mark",
+  "customerPrice": "$125.00",
+  "remainingAmount": "-$0.50"
+ },
+ {
+  "orderTitle": "lamp 85.00",
+  "employeeName": "Jane",
+  "customerPrice": "$85.00",
+  "remainingAmount": "$0.00"
+ },
+ {
+  "orderTitle": "table 200.00",
+  "employeeName": "John",
+  "customerPrice": "$200.00",
+  "remainingAmount": "$1.00"
+ },
+ {
+  "orderTitle": "vista 125.00",
+  "employeeName": "Mark",
+  "customerPrice": "$1435.00",
+  "remainingAmount": "-$0.50"
+ }
 ]
