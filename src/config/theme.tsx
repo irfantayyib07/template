@@ -30,6 +30,7 @@ export default function ModeContextProvider({
     styleOverrides: (theme) => `
     body {
      background: ${theme.palette.background.default} !important;
+     color: ${theme.palette.text.primary} !important;
     }
    `,
    },
