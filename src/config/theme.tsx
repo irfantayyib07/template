@@ -24,18 +24,27 @@ export default function ModeContextProvider({
  const theme = createTheme({
   palette: {
    mode: mode,
-  }
+  },
+  components: {
+   MuiCssBaseline: {
+    styleOverrides: (theme) => `
+    body {
+     background: ${theme.palette.background.default} !important;
+    }
+   `,
+   },
+  },
  });
 
  const toggleMode = () => {
   if (mode === "light") {
    setMode("dark");
    window.localStorage.setItem("mode", "dark");
-   document.documentElement.classList.add("dark");
+   // document.documentElement.classList.add("dark");
   } else {
    setMode("light");
    window.localStorage.setItem("mode", "light");
-   document.documentElement.classList.remove("dark");
+   // document.documentElement.classList.remove("dark");
   }
  };
 
