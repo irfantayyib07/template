@@ -3,38 +3,45 @@ import Chip from '@mui/material/Chip';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-const FixedTags = ({ options }) => {
-  const fixedOptions = [options[0]];  // You can adjust this to whichever fixed option you prefer
-  const [value, setValue] = React.useState([...fixedOptions]);
+interface Option {
+  label: string;
+  color?: string;
+}
+
+interface MultiSelectProps {
+  options: Option[];
+  label: string;
+}
+
+const MultiSelect: React.FC<MultiSelectProps> = ({ options, label }) => {
+  const [value, setValue] = React.useState<Option[]>([]);
 
   return (
     <Autocomplete
       multiple
-      id="fixed-tags-demo"
+      id="dynamic-label-autocomplete"
       value={value}
       onChange={(event, newValue) => {
-        setValue([
-          ...fixedOptions,
-          ...newValue.filter((option) => fixedOptions.indexOf(option) === -1),
-        ]);
+        setValue(newValue as Option[]);
       }}
       options={options}
       getOptionLabel={(option) => option.label}
       renderTags={(tagValue, getTagProps) =>
         tagValue.map((option, index) => (
-          <Chip
-            label={option.label}
-            {...getTagProps({ index })}
-            disabled={fixedOptions.indexOf(option) !== -1}
-          />
+          <React.Fragment key={index}>
+            <Chip
+              label={option.label}
+              {...getTagProps({ index })}
+            />
+          </React.Fragment>
         ))
       }
       style={{ width: '100%' }}
       renderInput={(params) => (
-        <TextField {...params} label="Employee Name" placeholder="Select employees" />
+        <TextField {...params} label={label} placeholder="Select employees" />
       )}
     />
   );
 };
 
-export default FixedTags;
+export default MultiSelect;

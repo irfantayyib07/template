@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import OrderCard from "@/components/cards/order-card";
+import OrderCard from "@/components/cards/orderCard";
 
 type Order = {
   orderTitle: string;
