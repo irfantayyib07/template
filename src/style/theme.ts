@@ -107,6 +107,22 @@ const theme = createTheme({
     },
    },
   },
+  MuiTextField: {
+    styleOverrides: {
+      root: {
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderRadius: 32,
+          },
+          '&:hover fieldset': {
+          },
+          '&.Mui-focused fieldset': {
+          },
+        },
+      },
+    },
+  },
+  
  },
 });
 

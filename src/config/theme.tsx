@@ -3,6 +3,7 @@
 import { createTheme } from "@mui/material";
 import React, { useEffect, useState, createContext, useContext } from "react";
 import { Theme, ThemeProvider } from "@mui/material";
+import { Padding } from "@mui/icons-material";
 
 type Mode = "light" | "dark";
 
@@ -34,6 +35,22 @@ export default function ModeContextProvider({
     }
    `,
    },
+
+   MuiTextField: {
+    styleOverrides: {
+      root: {
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderRadius: 32,
+          },
+          '&:hover fieldset': {
+          },
+          '&.Mui-focused fieldset': {
+          },
+        },
+      },
+    },
+  },
   },
  });
 
