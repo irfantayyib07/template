@@ -5,7 +5,7 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import MoneyOffIcon from "@mui/icons-material/MoneyOff";
 import DropDown from "@/components/dropdown";
 import CustomDialog from "../dialog";
-import OrderForm from "@/section/Forms/order-form";
+import OrderForm from "@/components/forms/order-form";
 
 type OrderCardProps = {
  orderTitle: string;

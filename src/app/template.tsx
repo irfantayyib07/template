@@ -1,7 +1,7 @@
 "use client";
 
 import CustomDialog from "@/components/dialog";
-import OrderForm from "@/section/Forms/order-form";
+import OrderForm from "@/components/forms/order-form";
 import { Add } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import React, { useState } from "react";

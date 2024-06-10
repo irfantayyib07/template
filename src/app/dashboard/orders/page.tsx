@@ -19,8 +19,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import OrderListing from "@/section/order-listing/page";
-import Header from "@/section/header/page";
+import OrderListing from "@/components/order-listing/page";
+import Header from "@/components/header/page";
 
 const drawerWidth = 240;
 

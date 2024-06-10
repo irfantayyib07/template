@@ -19,7 +19,6 @@ const CustomDialog: React.FC<CustomDialogProps> = ({ title, content, open, handl
       aria-labelledby="dialog-title"
       aria-describedby="dialog-description"
       maxWidth={maxWidth}
-      fullWidth
     >
       <DialogTitle id="dialog-title">{title}</DialogTitle>
       <DialogContent dividers>
