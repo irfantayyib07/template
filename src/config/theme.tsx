@@ -12,7 +12,8 @@ type ModeContextProviderProps = {
 };
 
 type ModeContextType = {
- toggleMode: () => void;
+ mode: Mode
+ toggleMode: () => void
 };
 
 const ModeContext = createContext<ModeContextType | null>(null);
@@ -139,7 +140,7 @@ export default function ModeContextProvider({
 
  return (
   <ModeContext.Provider
-   value={{ toggleMode }}
+   value={{ mode, toggleMode }}
   >
    <ThemeProvider
     theme={theme}
