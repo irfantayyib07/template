@@ -26,6 +26,42 @@ export default function ModeContextProvider({
   palette: {
    mode: mode,
   },
+  typography: {
+    fontFamily: ["Roboto", "Arial", "sans-serif"].join(","),
+    h1: {
+     fontSize: "2.5rem",
+     fontWeight: 500,
+    },
+    h2: {
+     fontSize: "2rem",
+     fontWeight: 500,
+    },
+    h3: {
+     fontSize: "1.75rem",
+     fontWeight: 500,
+    },
+    h4: {
+     fontSize: "1.5rem",
+     fontWeight: 500,
+    },
+    h5: {
+     fontSize: "1.25rem",
+     fontWeight: 500,
+    },
+    h6: {
+     fontSize: "1rem",
+     fontWeight: 500,
+    },
+    body1: {
+     fontSize: "1rem",
+    },
+    body2: {
+     fontSize: "0.875rem",
+    },
+    button: {
+     textTransform: "none",
+    },
+   },
   components: {
    MuiCssBaseline: {
     styleOverrides: (theme) => `
@@ -35,13 +71,33 @@ export default function ModeContextProvider({
     }
    `,
    },
-
+   MuiAutocomplete: {
+    styleOverrides: {
+      root: {
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderRadius: 8,
+          },
+        },
+      },
+      inputRoot: {
+        '&[class*="MuiOutlinedInput-root"]': {
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderRadius: 8,
+          },
+        },
+      },
+      popupIndicator: {
+        color: 'inherit', 
+      },
+    },
+  },
    MuiTextField: {
     styleOverrides: {
       root: {
         '& .MuiOutlinedInput-root': {
           '& fieldset': {
-            borderRadius: 32,
+            borderRadius: 8,
           },
           '&:hover fieldset': {
           },

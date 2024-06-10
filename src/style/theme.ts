@@ -112,7 +112,7 @@ const theme = createTheme({
       root: {
         '& .MuiOutlinedInput-root': {
           '& fieldset': {
-            borderRadius: 32,
+            borderRadius: 8,
           },
           '&:hover fieldset': {
           },

@@ -1,42 +1,37 @@
 'use client';
 
 import React from 'react';
+import { Box, TextField, Typography, Grid } from '@mui/material';
 import BasicTextFields from '@/components/basicTextFields';
-import { Box, TextField, Typography, Button, Grid, MenuItem, Select, FormControl, InputLabel } from '@mui/material';
+import FixedTags from '@/components/multiSelect';
+
+const employeeOptions = [
+  { label: 'Mark', color: '#ff8a80' },
+  { label: 'John', color: '#ff80ab' },
+  { label: 'Jane', color: '#b39ddb' },
+];
 
 const CustomForm: React.FC = () => {
-    return (
-        <Box sx={{ p: 2 }}>
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <Typography variant="h6" sx={{ mb: 1 }}>Order Title</Typography>
-                    <BasicTextFields defaultValue="Mark Flowers" size="small" />
-                </Grid>
-                <Grid item xs={12}>
-                    <Grid item xs={12} sm={6}>
-                        <Typography variant="h6" sx={{ mb: 1 }}>Employee Name</Typography>
-
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                    </Grid>
-                    <FormControl fullWidth>
-                        <Select defaultValue="">
-                            <MenuItem value="Mark">Mark</MenuItem>
-                            <MenuItem value="John">John</MenuItem>
-                            <MenuItem value="Jane">Jane</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField fullWidth label="Customer Price" defaultValue="$125.00" />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField fullWidth label="Remaining $" defaultValue="$110.00" />
-                </Grid>
-               
-            </Grid>
-        </Box>
-    );
+  return (
+    <>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={3}>
+          <Typography variant="h6">Order Title</Typography>
+        </Grid>
+        <Grid item xs={12} sm={9}>
+          <BasicTextFields size="small" defaultValue="Mark Flowers" fullWidth />
+        </Grid>
+        <Grid item xs={12} container alignItems="center">
+          <Grid item xs={12} sm={3}>
+            <Typography variant="h6">Employee Name</Typography>
+          </Grid>
+          <Grid item xs={12} sm={9}>
+            <FixedTags options={employeeOptions} />
+          </Grid>
+        </Grid>
+      </Grid>
+    </>
+  );
 };
 
 export default CustomForm;

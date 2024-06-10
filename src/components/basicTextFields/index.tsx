@@ -1,8 +1,12 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
 
-export default function BasicTextFields() {
+const BasicTextFields: React.FC<TextFieldProps> = (props) => {
   return (
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+    <TextField 
+      {...props} 
+    />
   );
 }
+
+export default BasicTextFields;
