@@ -14,13 +14,8 @@ type OrderCardProps = {
  remainingAmount: string;
 };
 
-const OrderCard: React.FC<OrderCardProps> = (props) => {
- const {
-   orderTitle,
-   employeeName,
-   customerPrice,
-   remainingAmount,
- } = props;
+const OrderCard: React.FC<OrderCardProps> = props => {
+ const { orderTitle, employeeName, customerPrice, remainingAmount } = props;
 
  const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -92,7 +87,8 @@ const OrderCard: React.FC<OrderCardProps> = (props) => {
     content={<OrderForm {...props} mode="edit" />}
     open={dialogOpen}
     handleClose={handleCloseDialog}
-    maxWidth='90%'
+    fullWidth={true}
+    fullScreen={false}
    />
   </>
  );
