@@ -8,7 +8,7 @@ interface CustomDialogProps {
   open: boolean;
   handleClose: () => void;
   handleAgree?: () => void;
-  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '90%' | undefined;
 }
 
 const CustomDialog: React.FC<CustomDialogProps> = ({ title, content, open, handleClose, handleAgree, maxWidth = 'sm' }) => {
