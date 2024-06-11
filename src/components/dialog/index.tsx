@@ -9,7 +9,7 @@ interface CustomDialogProps {
  handleClose: () => void;
  handleAgree?: () => void;
  fullWidth?: boolean;
- maxWidth?: "xs" | "sm" | "md" | "lg" | "xl" | undefined;
+ maxWidth?: "xs" | "sm" | "md" | "lg" | "xl" | false;
  fullScreen?: boolean;
 }
 
@@ -19,8 +19,8 @@ const CustomDialog: React.FC<CustomDialogProps> = ({
  open,
  handleClose,
  handleAgree,
+ maxWidth = false,
  fullWidth = true,
- maxWidth = "",
  fullScreen = false,
 }) => {
  return (

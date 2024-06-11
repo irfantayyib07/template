@@ -41,6 +41,7 @@ function DashboardTemplate({ children }: { children: React.ReactNode }) {
     handleClose={handleCloseDialog}
     fullWidth={true}
     fullScreen={false}
+    maxWidth={false}
    />
   </>
  );

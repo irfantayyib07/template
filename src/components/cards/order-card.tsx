@@ -89,6 +89,7 @@ const OrderCard: React.FC<OrderCardProps> = props => {
     handleClose={handleCloseDialog}
     fullWidth={true}
     fullScreen={false}
+    maxWidth={false}
    />
   </>
  );
