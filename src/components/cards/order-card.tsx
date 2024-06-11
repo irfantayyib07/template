@@ -92,7 +92,7 @@ const OrderCard: React.FC<OrderCardProps> = (props) => {
     content={<OrderForm {...props} mode="edit" />}
     open={dialogOpen}
     handleClose={handleCloseDialog}
-    maxWidth='md'
+    maxWidth='90%'
    />
   </>
  );

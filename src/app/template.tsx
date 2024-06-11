@@ -28,7 +28,7 @@ function DashboardTemplate({ children }: { children: React.ReactNode; }) {
     content={<OrderForm mode="add" />}
     open={dialogOpen}
     handleClose={handleCloseDialog}
-    maxWidth='md'
+    maxWidth='xl'
    />
   </>
  );

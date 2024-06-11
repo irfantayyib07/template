@@ -21,7 +21,7 @@ const ModeContext = createContext<ModeContextType | null>(null);
 export default function ModeContextProvider({
  children,
 }: ModeContextProviderProps) {
- const [mode, setMode] = useState<Mode>("dark");
+ const [mode, setMode] = useState<Mode>("light");
 
  const theme = createTheme({
   palette: {
@@ -77,14 +77,14 @@ export default function ModeContextProvider({
       root: {
         '& .MuiOutlinedInput-root': {
           '& fieldset': {
-            borderRadius: 8,
+            borderRadius: 4,
           },
         },
       },
       inputRoot: {
         '&[class*="MuiOutlinedInput-root"]': {
           '& .MuiOutlinedInput-notchedOutline': {
-            borderRadius: 8,
+            borderRadius: 4,
           },
         },
       },
@@ -98,7 +98,7 @@ export default function ModeContextProvider({
       root: {
         '& .MuiOutlinedInput-root': {
           '& fieldset': {
-            borderRadius: 8,
+            borderRadius: 4,
           },
           '&:hover fieldset': {
           },
