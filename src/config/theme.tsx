@@ -2,8 +2,7 @@
 
 import { createTheme } from "@mui/material";
 import React, { useEffect, useState, createContext, useContext } from "react";
-import { Theme, ThemeProvider } from "@mui/material";
-import { Padding } from "@mui/icons-material";
+import { ThemeProvider } from "@mui/material";
 
 type Mode = "light" | "dark";
 
@@ -12,8 +11,8 @@ type ModeContextProviderProps = {
 };
 
 type ModeContextType = {
- mode: Mode
- toggleMode: () => void
+ mode: Mode;
+ toggleMode: () => void;
 };
 
 const ModeContext = createContext<ModeContextType | null>(null);
@@ -26,6 +25,12 @@ export default function ModeContextProvider({
  const theme = createTheme({
   palette: {
    mode: mode,
+   primary: {
+    main: '#1976d2',
+   },
+   secondary: {
+    main: '#dc004e', 
+   },
   },
   typography: {
     fontFamily: ["Roboto", "Arial", "sans-serif"].join(","),
@@ -115,11 +120,9 @@ export default function ModeContextProvider({
   if (mode === "light") {
    setMode("dark");
    window.localStorage.setItem("mode", "dark");
-   // document.documentElement.classList.add("dark");
   } else {
    setMode("light");
    window.localStorage.setItem("mode", "light");
-   // document.documentElement.classList.remove("dark");
   }
  };
 
@@ -128,23 +131,18 @@ export default function ModeContextProvider({
 
   if (localMode) {
    setMode(localMode);
-
    if (localMode === "dark") {
     document.documentElement.classList.add("dark");
    }
-  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-   setMode("dark");
-   document.documentElement.classList.add("dark");
+  } else {
+   setMode("light");
+   document.documentElement.classList.remove("dark");
   }
  }, []);
 
  return (
-  <ModeContext.Provider
-   value={{ mode, toggleMode }}
-  >
-   <ThemeProvider
-    theme={theme}
-   >
+  <ModeContext.Provider value={{ mode, toggleMode }}>
+   <ThemeProvider theme={theme}>
     {children}
    </ThemeProvider>
   </ModeContext.Provider>
