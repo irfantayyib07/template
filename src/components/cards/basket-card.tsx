@@ -1,4 +1,4 @@
-// DynamicBox.tsx
+// DynamicBox.tsx for Record Listing - Expired Components
 import React from 'react';
 import { Box, Chip, Typography, IconButton, Grid, Stack } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
