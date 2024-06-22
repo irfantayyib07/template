@@ -36,7 +36,7 @@ const CustomDialog: React.FC<CustomDialogProps> = ({
    <DialogTitle id="dialog-title">{title}</DialogTitle>
    <DialogContent dividers>{content}</DialogContent>
    <DialogActions>
-    <Button onClick={handleClose}>Disagree</Button>
+    <Button onClick={handleClose}>Close</Button>
     <Button onClick={handleAgree || handleClose} autoFocus>
      Save
     </Button>
