@@ -21,7 +21,7 @@ export const PACKING = [
 ];
 
 export const FRESHFLOWER = [
- { name: 'rose', price: '$10' },
- { name: 'tulip', price: '$20' },
- { name: 'sunflower', price: '$15' },
+ { name: 'Rose', price: '$10' },
+ { name: 'Tulip', price: '$20' },
+ { name: 'Sunflower', price: '$15' },
 ];

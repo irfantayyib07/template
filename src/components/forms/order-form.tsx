@@ -1,7 +1,7 @@
 'use client';
 
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
-import { Typography, Grid, Chip, Button } from '@mui/material';
+import { Typography, Grid, Chip, Button, Container } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import SingleSelect from '../single-select';
 import MultipleSelectCheckmarks from '../multiple-select-checkmarks';
@@ -24,7 +24,24 @@ const OrderFormSchema = Yup.object().shape({
  employeeName: Yup.string().required('Employee Name is required'),
  customerPrice: Yup.number().required('Customer Price is required'),
  remainingAmount: Yup.number().required('Remaining Amount is required'),
- selectedRecords: Yup.array().min(1, 'At least one record must be selected'),
+ selectedRecords: Yup.array().of(
+  Yup.object({
+   name: Yup.string().required(),
+   price: Yup.string().required(),
+  })
+ ).min(1, 'Select at least one record'),
+ freshFlowerQuantity: Yup.array().of(
+  Yup.object({
+   name: Yup.string().required(),
+   price: Yup.string().required(),
+  })
+ ).min(1, 'Select at least one record'),
+ packaging: Yup.array().of(
+  Yup.object({
+   name: Yup.string().required(),
+   price: Yup.string().required(),
+  })
+ ).min(1, 'Select at least one record'),
 });
 
 type OrderFormValues = Yup.InferType<typeof OrderFormSchema>;
@@ -45,6 +62,8 @@ const OrderForm = ({
    customerPrice: mode === 'edit' ? customerPrice : '',
    remainingAmount: mode === 'edit' ? remainingAmount : '',
    selectedRecords: [],
+   freshFlowerQuantity: [],
+   packaging: [],
   },
   validationSchema: OrderFormSchema,
   onSubmit: (values) => {
@@ -150,9 +169,16 @@ const OrderForm = ({
         <Typography variant="h6">Hard Goods Price</Typography>
        </Grid>
        <Grid item xs={12} sm={9}>
-        <Typography variant="body1" color="text.primary">
-         $20.45
-        </Typography>
+        <BasicTextFields
+         InputProps={{
+          readOnly: true,
+          notched: true,
+         }}
+         InputLabelProps={{ shrink: true }}
+         label="Hard Goods Price"
+         defaultValue="20.45"
+         fullWidth
+        />
        </Grid>
       </Grid>
       <Grid item xs={12} container alignItems="center">
@@ -177,7 +203,11 @@ const OrderForm = ({
         <Typography variant="h6">Packaging</Typography>
        </Grid>
        <Grid item xs={12} sm={9}>
-        <MultipleSelectCheckmarks records={PACKING} />
+        <MultipleSelectCheckmarks
+         name="packaging"
+         label="Select Packaging"
+         records={PACKING}
+        />
        </Grid>
       </Grid>
       <Grid item xs={12} container alignItems="center">
@@ -202,7 +232,11 @@ const OrderForm = ({
         <Typography variant="h6">Fresh Flower qty</Typography>
        </Grid>
        <Grid item xs={12} sm={9}>
-        <MultipleSelectCheckmarks records={FRESHFLOWER} />
+        <MultipleSelectCheckmarks
+         name="freshFlowerQuantity"
+         label="Select Flower Quantity"
+         records={FRESHFLOWER}
+        />
        </Grid>
       </Grid>
       <Grid item xs={12} container alignItems="center">
@@ -304,20 +338,38 @@ const OrderForm = ({
       {formik.values.customerPrice && <Grid item><Typography variant="body2" sx={{ mb: "5px" }}>Customer</Typography>
        <Chip label={formik.values.customerPrice} size="small" /></Grid>}
 
-      <Grid item>
+      {formik.values.selectedRecords.length !== 0 && <Grid item>
        <Typography variant="body2" sx={{ mb: "5px" }}>Hard Goods</Typography>
-       <Chip label="$20.45" size="small" />
-      </Grid>
+       <Grid container gap={.5}>
+        {formik.values.selectedRecords.map(record => (
+         <Grid item>
+          <Chip label={`${record.name} - ${record.price}`} size="small" />
+         </Grid>
+        ))}
+       </Grid>
+      </Grid>}
 
-      <Grid item>
+      {formik.values.packaging.length !== 0 && <Grid item>
        <Typography variant="body2" sx={{ mb: "5px" }}>Packaging</Typography>
-       <Chip label="$15.0" size="small" />
-      </Grid>
+       <Grid container gap={.5}>
+        {formik.values.packaging.map(record => (
+         <Grid item>
+          <Chip label={`${record.name} - ${record.price}`} size="small" />
+         </Grid>
+        ))}
+       </Grid>
+      </Grid>}
 
-      <Grid item>
+      {formik.values.freshFlowerQuantity.length !== 0 && <Grid item>
        <Typography variant="body2" sx={{ mb: "5px" }}>Fresh Flower Quantity</Typography>
-       <Chip label="5.00" size="small" />
-      </Grid>
+       <Grid container gap={.5}>
+        {formik.values.freshFlowerQuantity.map(record => (
+         <Grid item>
+          <Chip label={`${record.name} - ${record.price}`} size="small" />
+         </Grid>
+        ))}
+       </Grid>
+      </Grid>}
      </Grid>
     </Grid>
 
