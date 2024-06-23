@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Card, CardContent, Typography, Chip, Box, Stack, Divider } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
@@ -44,6 +44,8 @@ const OrderCard: React.FC<OrderCardProps> = props => {
     { label: "Send order", onClick: () => console.log("Send order") },
     { label: "Delete order", onClick: () => console.log("Delete order") },
   ];
+
+  const modalRef = useRef();
 
   return (
     <>
@@ -102,8 +104,9 @@ const OrderCard: React.FC<OrderCardProps> = props => {
       </Card>
       <CustomDialog
         title="Create Order"
-        content={<OrderForm {...props} mode="edit" />}
+        content={<OrderForm {...props} mode="edit" ref={modalRef} />}
         open={dialogOpen}
+        ref={modalRef}
         handleClose={handleCloseDialog}
         fullWidth={true}
         fullScreen={false}

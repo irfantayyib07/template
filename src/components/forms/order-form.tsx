@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import { Typography, Grid, Chip, Button } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import SingleSelect from '../single-select';
@@ -24,23 +24,27 @@ const OrderFormSchema = Yup.object().shape({
  employeeName: Yup.string().required('Employee Name is required'),
  customerPrice: Yup.number().required('Customer Price is required'),
  remainingAmount: Yup.number().required('Remaining Amount is required'),
+ selectedRecords: Yup.array().min(1, 'At least one record must be selected'),
 });
 
 type OrderFormValues = Yup.InferType<typeof OrderFormSchema>;
 
-const OrderForm: React.FC<OrderCardProps> = ({
+const OrderForm = ({
  orderTitle,
  customerPrice,
  remainingAmount,
  employeeName,
  mode,
-}) => {
+}: OrderCardProps, ref) => {
+ const submitButtonRef = useRef();
+
  const formik = useFormik({
   initialValues: {
    orderTitle: mode === 'edit' ? orderTitle : '',
    employeeName: mode === "edit" ? employeeName : '',
    customerPrice: mode === 'edit' ? customerPrice : '',
    remainingAmount: mode === 'edit' ? remainingAmount : '',
+   selectedRecords: [],
   },
   validationSchema: OrderFormSchema,
   onSubmit: (values) => {
@@ -50,6 +54,11 @@ const OrderForm: React.FC<OrderCardProps> = ({
   validateOnBlur: false,
   validateOnChange: false,
  });
+
+ useImperativeHandle(ref, () => ({
+  errors: formik.errors,
+  submit: () => submitButtonRef.current.click(),
+ }), [formik.errors]);
 
  return (
   <FormikProvider value={formik}>
@@ -129,7 +138,11 @@ const OrderForm: React.FC<OrderCardProps> = ({
         <Typography variant="h6">Hard Goods</Typography>
        </Grid>
        <Grid item xs={12} sm={9}>
-        <MultipleSelectCheckmarks records={RECORDS} />
+        <MultipleSelectCheckmarks
+         name="selectedRecords"
+         label="Select Records"
+         records={RECORDS}
+        />
        </Grid>
       </Grid>
       <Grid item xs={12} container alignItems="center">
@@ -277,11 +290,6 @@ const OrderForm: React.FC<OrderCardProps> = ({
         />
        </Grid>
       </Grid>
-      <Grid item xs={12} container justifyContent="center">
-       <Button type="submit" variant="contained" color="primary">
-        Submit
-       </Button>
-      </Grid>
      </Grid>
      {/* Sidebar */}
      <Grid item>
@@ -295,11 +303,28 @@ const OrderForm: React.FC<OrderCardProps> = ({
        <Chip label={formik.values.employeeName} size="small" /></Grid>}
       {formik.values.customerPrice && <Grid item><Typography variant="body2" sx={{ mb: "5px" }}>Customer</Typography>
        <Chip label={formik.values.customerPrice} size="small" /></Grid>}
+
+      <Grid item>
+       <Typography variant="body2" sx={{ mb: "5px" }}>Hard Goods</Typography>
+       <Chip label="$20.45" size="small" />
+      </Grid>
+
+      <Grid item>
+       <Typography variant="body2" sx={{ mb: "5px" }}>Packaging</Typography>
+       <Chip label="$15.0" size="small" />
+      </Grid>
+
+      <Grid item>
+       <Typography variant="body2" sx={{ mb: "5px" }}>Fresh Flower Quantity</Typography>
+       <Chip label="$5.00" size="small" />
+      </Grid>
      </Grid>
     </Grid>
+
+    <Button type="submit" sx={{ display: "none" }} ref={submitButtonRef} />
    </Form>
   </FormikProvider>
  );
 };
 
-export default OrderForm;
+export default forwardRef<React.ReactNode, OrderCardProps>(OrderForm);

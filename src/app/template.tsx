@@ -4,10 +4,11 @@ import CustomDialog from "@/components/dialog";
 import OrderForm from "@/components/forms/order-form";
 import { Add } from "@mui/icons-material";
 import { Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
-function DashboardTemplate({ children }: { children: React.ReactNode }) {
+function DashboardTemplate({ children }: { children: React.ReactNode; }) {
  const [dialogOpen, setDialogOpen] = useState(false);
+ const modalRef = useRef();
 
  const handleOpenDialog = () => {
   setDialogOpen(true);
@@ -36,7 +37,8 @@ function DashboardTemplate({ children }: { children: React.ReactNode }) {
    </Button>
    <CustomDialog
     title="Create Order"
-    content={<OrderForm mode="add" />}
+    content={<OrderForm mode="add" ref={modalRef} />}
+    ref={modalRef}
     open={dialogOpen}
     handleClose={handleCloseDialog}
     fullWidth={true}

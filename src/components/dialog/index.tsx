@@ -1,5 +1,5 @@
 // CustomDialog.tsx
-import React, { ReactNode } from "react";
+import React, { ReactNode, forwardRef, useRef } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 
 interface CustomDialogProps {
@@ -13,16 +13,19 @@ interface CustomDialogProps {
  fullScreen?: boolean;
 }
 
-const CustomDialog: React.FC<CustomDialogProps> = ({
+const CustomDialog = ({
  title,
  content,
  open,
  handleClose,
- handleAgree,
  maxWidth = false,
  fullWidth = true,
  fullScreen = false,
-}) => {
+}: CustomDialogProps, ref) => {
+ const handleClick = () => {
+  ref.current.submit();
+ };
+ 
  return (
   <Dialog
    open={open}
@@ -37,7 +40,7 @@ const CustomDialog: React.FC<CustomDialogProps> = ({
    <DialogContent dividers>{content}</DialogContent>
    <DialogActions>
     <Button onClick={handleClose}>Close</Button>
-    <Button onClick={handleAgree || handleClose} autoFocus>
+    <Button onClick={handleClick} autoFocus>
      Save
     </Button>
    </DialogActions>
@@ -45,4 +48,4 @@ const CustomDialog: React.FC<CustomDialogProps> = ({
  );
 };
 
-export default CustomDialog;
+export default forwardRef<React.ReactNode, CustomDialogProps>(CustomDialog);
