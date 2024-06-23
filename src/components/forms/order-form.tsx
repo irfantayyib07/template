@@ -316,7 +316,7 @@ const OrderForm = ({
 
       <Grid item>
        <Typography variant="body2" sx={{ mb: "5px" }}>Fresh Flower Quantity</Typography>
-       <Chip label="$5.00" size="small" />
+       <Chip label="5.00" size="small" />
       </Grid>
      </Grid>
     </Grid>
