@@ -91,10 +91,15 @@ const OrderForm = (
 
  return (
   <FormikProvider value={formik}>
-   <Form onSubmit={formik.handleSubmit}>
-    <Grid container gap={2} flexWrap="nowrap">
-     <Grid container item sm={5} gap={4}>
-      <Grid item xs={12} container alignItems="center">
+   <Form onSubmit={formik.handleSubmit} className="h-full">
+    <Grid container gap={2} flexWrap="nowrap" className="h-full">
+     <Grid container
+      item
+      sm={7}
+      gap={4}
+      className="h-full overflow-y-auto pr-5"
+     >
+      <Grid item xs={12} container alignItems="center" className="mt-2">
        <Grid item xs={12} sm={3}>
         <Typography variant="h6">Order Title</Typography>
        </Grid>
@@ -289,12 +294,14 @@ const OrderForm = (
        </Grid>
       </Grid>
      </Grid>
+
      {/* Sidebar */}
      <Grid item>
       <Divider orientation="vertical" />
      </Grid>
 
-     <Grid item container flexDirection="column" sm={7} gap={4}>
+     {/* Data Display */}
+     <Grid item container flexDirection="column" flexWrap="nowrap" sm={5} gap={4} className="h-full overflow-y-auto pr-5">
       {(
        <Grid item>
         <BasicTextFields
@@ -305,7 +312,9 @@ const OrderForm = (
          InputLabelProps={{ shrink: true }}
          label="Order Title"
          value={formik.values.orderTitle || "---"}
+         className="mt-2"
          fullWidth
+         size="small"
         />
        </Grid>
       )}
@@ -320,6 +329,7 @@ const OrderForm = (
          label="Employee Name"
          value={formik.values.employeeName || "---"}
          fullWidth
+         size="small"
         />
        </Grid>
       )}
@@ -336,6 +346,7 @@ const OrderForm = (
           label="Customer Price"
           value={formik.values.customerPrice || 0}
           fullWidth
+          size="small"
          />
         </Grid>
         <Grid item>
@@ -348,6 +359,7 @@ const OrderForm = (
           label="Greens"
           value={`${20 * +formik.values.customerPrice / 100}`}
           fullWidth
+          size="small"
          />
         </Grid>
         <Grid item>
@@ -360,6 +372,7 @@ const OrderForm = (
           label="Wastage"
           value={`${10 * +formik.values.customerPrice / 100}`}
           fullWidth
+          size="small"
          />
         </Grid>
        </Grid>
@@ -376,6 +389,7 @@ const OrderForm = (
          label="Remaining Budget"
          value={formik.values.remainingAmount || 0}
          fullWidth
+         size="small"
         />
        </Grid>
       )}
@@ -412,6 +426,7 @@ const OrderForm = (
          label="Total Hard Goods Price"
          value={`$${formik.values.selectedRecords?.reduce((acc, obj) => +obj.price.replace("$", "") + acc, 0)}`}
          fullWidth
+         size="small"
         />
        </Grid>
       )}
@@ -442,6 +457,7 @@ const OrderForm = (
          label="Total Packaging Price"
          value={`$${formik.values.packaging?.reduce((acc, obj) => +obj.price.replace("$", "") + acc, 0)}`}
          fullWidth
+         size="small"
         />
        </Grid>
       )}
@@ -472,6 +488,7 @@ const OrderForm = (
          label="Total Fresh Flower Price"
          value={`$${formik.values.freshFlowerQuantity?.reduce((acc, obj) => +obj.price.replace("$", "") + acc, 0)}`}
          fullWidth
+         size="small"
         />
        </Grid>
       )}
@@ -489,6 +506,7 @@ const OrderForm = (
          label="Remaining"
          value={"$5.00"}
          fullWidth
+         size="small"
         />
        </Grid>
       )}
@@ -504,6 +522,7 @@ const OrderForm = (
          label="Quantity"
          value={"$5.00"}
          fullWidth
+         size="small"
         />
        </Grid>
       )}
@@ -519,6 +538,7 @@ const OrderForm = (
          label="Price"
          value={"$5.00"}
          fullWidth
+         size="small"
         />
        </Grid>
       )}
@@ -534,6 +554,7 @@ const OrderForm = (
          label="Flower Price"
          value={"$5.00"}
          fullWidth
+         size="small"
         />
        </Grid>
       )}

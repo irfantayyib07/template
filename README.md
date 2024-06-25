@@ -59,3 +59,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 3 npm install -D prettier
 - added format script in package.json
 - added .prettierrc.json and .prettierignore files
+
+4 npm install formik yup
+- used formik and yup for form validation and handling
+- used refs and useImperativeHandle hook to implement the form submit functionality upon clicking the modal "Save" button
+- Displayed data to the right of the modal
