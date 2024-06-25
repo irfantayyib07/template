@@ -406,11 +406,11 @@ const OrderForm = (
          Hard Goods:{" "}
         </Typography>
         <Grid container gap={0.5}>
-         {formik.values?.selectedRecords?.map((record) => (
+         {formik.values?.selectedRecords?.length !== 0 ? formik.values?.selectedRecords?.map((record) => (
           <Grid item key={record.name}>
-           <Chip label={formik.values?.selectedRecords?.length !== 0 && `${record.name} - ${record.price}`} size="small" />
+           <Chip label={`${record.name} - ${record.price}`} size="small" />
           </Grid>
-         ))}
+         )) : <Chip label="---" size="small" />}
         </Grid>
        </Grid>
       )}
@@ -437,11 +437,11 @@ const OrderForm = (
          Packaging:
         </Typography>
         <Grid container gap={0.5}>
-         {formik?.values?.packaging?.map((record) => (
+         {formik?.values?.packaging?.length !== 0 ? formik?.values?.packaging?.map((record) => (
           <Grid item key={record.name}>
-           <Chip label={formik?.values?.packaging?.length !== 0 && `${record.name} - ${record.price}`} size="small" />
+           <Chip label={`${record.name} - ${record.price}`} size="small" />
           </Grid>
-         ))}
+         )) : <Chip label="---" size="small" />}
         </Grid>
        </Grid>
       )}
@@ -468,11 +468,11 @@ const OrderForm = (
          Fresh Flower Quantity:
         </Typography>
         <Grid container gap={0.5}>
-         {formik.values?.freshFlowerQuantity?.map((record) => (
+         {formik.values?.freshFlowerQuantity?.length !== 0 ? formik.values?.freshFlowerQuantity?.map((record) => (
           <Grid item key={record.name}>
-           <Chip label={formik.values?.freshFlowerQuantity?.length !== 0 && `${record.name} - ${record.price}`} size="small" />
+           <Chip label={`${record.name} - ${record.price}`} size="small" />
           </Grid>
-         ))}
+         )) : <Chip label="---" size="small" />}
         </Grid>
        </Grid>
       )}
