@@ -11,84 +11,83 @@ import BasicTextFields from "@/components/basic-text-fields";
 import { Form, FormikProvider, useFormik } from "formik";
 
 type RecordType = {
-  name: string;
-  price: string;
+ name: string;
+ price: string;
 };
 
 type OrderCardProps = {
-  orderTitle?: string;
-  employeeName?: string;
-  customerPrice?: string;
-  remainingAmount?: string;
-  mode: "add" | "edit";
+ orderTitle?: string;
+ employeeName?: string;
+ customerPrice?: string;
+ remainingAmount?: string;
+ mode: "add" | "edit";
 };
 
 const OrderFormSchema = Yup.object().shape({
-  orderTitle: Yup.string().required("Order Title is required"),
-  employeeName: Yup.string().required("Employee Name is required"),
-  customerPrice: Yup.string().required("Customer Price is required"),
-  remainingAmount: Yup.string().required("Remaining Amount is required"),
-  selectedRecords: Yup.array()
-    .of(
-      Yup.object({
-        name: Yup.string().required(),
-        price: Yup.string().required(),
-      }),
-    )
-    .min(1, "Select at least one record"),
-  freshFlowerQuantity: Yup.array()
-    .of(
-      Yup.object({
-        name: Yup.string().required(),
-        price: Yup.string().required(),
-      }),
-    )
-    .min(1, "Select at least one record"),
-  packaging: Yup.array()
-    .of(
-      Yup.object({
-        name: Yup.string().required(),
-        price: Yup.string().required(),
-      }),
-    )
-    .min(1, "Select at least one record"),
+ orderTitle: Yup.string().required("Order Title is required"),
+ employeeName: Yup.string().required("Employee Name is required"),
+ customerPrice: Yup.string().required("Customer Price is required"),
+ remainingAmount: Yup.string().required("Remaining Amount is required"),
+ selectedRecords: Yup.array()
+  .of(
+   Yup.object({
+    name: Yup.string().required(),
+    price: Yup.string().required(),
+   }),
+  )
+  .min(1, "Select at least one record"),
+ freshFlowerQuantity: Yup.array()
+  .of(
+   Yup.object({
+    name: Yup.string().required(),
+    price: Yup.string().required(),
+   }),
+  )
+  .min(1, "Select at least one record"),
+ packaging: Yup.array()
+  .of(
+   Yup.object({
+    name: Yup.string().required(),
+    price: Yup.string().required(),
+   }),
+  )
+  .min(1, "Select at least one record"),
 });
 
 type OrderFormValues = Yup.InferType<typeof OrderFormSchema>;
 
 const OrderForm = (
-  { orderTitle, customerPrice, remainingAmount, employeeName, mode }: OrderCardProps,
-  ref: React.Ref<any>,
+ { orderTitle, customerPrice, remainingAmount, employeeName, mode }: OrderCardProps,
+ ref: React.Ref<any>,
 ) => {
-  const submitButtonRef = useRef<HTMLButtonElement>(null);
+ const submitButtonRef = useRef<HTMLButtonElement>(null);
 
-  const formik = useFormik<OrderFormValues>({
-    initialValues: {
-      orderTitle: mode === "edit" ? orderTitle || "" : "",
-      employeeName: mode === "edit" ? employeeName || "" : "",
-      customerPrice: mode === "edit" ? customerPrice || "" : "",
-      remainingAmount: mode === "edit" ? remainingAmount || "" : "",
-      selectedRecords: [] as RecordType[],
-      freshFlowerQuantity: [] as RecordType[],
-      packaging: [] as RecordType[],
-    },
-    validationSchema: OrderFormSchema,
-    onSubmit: values => {
-      console.log(values);
-      // Handle form submission
-    },
-    validateOnBlur: false,
-    validateOnChange: false,
-  });
+ const formik = useFormik<OrderFormValues>({
+  initialValues: {
+   orderTitle: mode === "edit" ? orderTitle || "" : "",
+   employeeName: mode === "edit" ? employeeName || "" : "",
+   customerPrice: mode === "edit" ? customerPrice || "" : "",
+   remainingAmount: mode === "edit" ? remainingAmount || "" : "",
+   selectedRecords: [] as RecordType[],
+   freshFlowerQuantity: [] as RecordType[],
+   packaging: [] as RecordType[],
+  },
+  validationSchema: OrderFormSchema,
+  onSubmit: values => {
+   console.log(values);
+   // Handle form submission
+  },
+  validateOnBlur: false,
+ });
 
-  useImperativeHandle(
-    ref,
-    () => ({
-      errors: formik.errors,
-      submit: () => submitButtonRef.current?.click(),
-    }),
-    [formik.errors],
-  );
+ useImperativeHandle(
+  ref,
+  () => ({
+   errors: formik.errors,
+   submit: () => submitButtonRef.current?.click(),
+  }),
+  [formik.errors],
+ );
 
  return (
   <FormikProvider value={formik}>
@@ -117,11 +116,7 @@ const OrderForm = (
         <Typography variant="h6">Employee Name</Typography>
        </Grid>
        <Grid item xs={12} sm={9}>
-        <SingleSelect
-         name="employeeName"
-         label="Select the Name"
-         options={NAMES}
-        />
+        <SingleSelect name="employeeName" label="Select the Name" options={NAMES} />
        </Grid>
       </Grid>
       <Grid item xs={12} container alignItems="center">
@@ -168,11 +163,7 @@ const OrderForm = (
         <Typography variant="h6">Hard Goods</Typography>
        </Grid>
        <Grid item xs={12} sm={9}>
-        <MultipleSelectCheckmarks
-         name="selectedRecords"
-         label="Select Records"
-         records={RECORDS}
-        />
+        <MultipleSelectCheckmarks name="selectedRecords" label="Select Records" records={RECORDS} />
        </Grid>
       </Grid>
       <Grid item xs={12} container alignItems="center">
@@ -187,7 +178,7 @@ const OrderForm = (
          }}
          InputLabelProps={{ shrink: true }}
          label="Hard Goods Price"
-         defaultValue="20.45"
+         value={`$${formik.values.selectedRecords?.reduce((acc, obj) => +obj.price.replace("$", "") + acc, 0)}`}
          fullWidth
         />
        </Grid>
@@ -197,11 +188,7 @@ const OrderForm = (
         <Typography variant="h6">Packaging</Typography>
        </Grid>
        <Grid item xs={12} sm={9}>
-        <MultipleSelectCheckmarks
-         name="packaging"
-         label="Select Packaging"
-         records={PACKING}
-        />
+        <MultipleSelectCheckmarks name="packaging" label="Select Packaging" records={PACKING} />
        </Grid>
       </Grid>
       <Grid item xs={12} container alignItems="center">
@@ -216,7 +203,7 @@ const OrderForm = (
          }}
          InputLabelProps={{ shrink: true }}
          label="Packing Price"
-         defaultValue="15.0"
+         value={`$${formik.values.packaging?.reduce((acc, obj) => +obj.price.replace("$", "") + acc, 0)}`}
          fullWidth
         />
        </Grid>
@@ -245,7 +232,7 @@ const OrderForm = (
          }}
          InputLabelProps={{ shrink: true }}
          label="Remaining"
-         defaultValue="5.00"
+         value="5.00"
          fullWidth
         />
        </Grid>
@@ -262,7 +249,7 @@ const OrderForm = (
          }}
          InputLabelProps={{ shrink: true }}
          label="From Fresh Flowers Quantity"
-         defaultValue="5.00"
+         value={`$${formik.values.freshFlowerQuantity?.reduce((acc, obj) => +obj.price.replace("$", "") + acc, 0)}`}
          fullWidth
         />
        </Grid>
@@ -279,7 +266,7 @@ const OrderForm = (
          }}
          InputLabelProps={{ shrink: true }}
          label="(from Fresh Flowers) (from Fresh Flowers Quantity)"
-         defaultValue="5.00"
+         value="5.00"
          fullWidth
         />
        </Grid>
@@ -296,7 +283,7 @@ const OrderForm = (
          }}
          InputLabelProps={{ shrink: true }}
          label="Flower Price"
-         defaultValue="5.00"
+         value="5.00"
          fullWidth
         />
        </Grid>
@@ -307,53 +294,256 @@ const OrderForm = (
       <Divider orientation="vertical" />
      </Grid>
 
-     <Grid item container flexDirection="column" sm={7} gap={2}>
-      {formik.values.orderTitle && <Grid item><Typography variant="body2" sx={{ mb: "5px" }}>Order Title</Typography>
-       <Chip label={formik.values.orderTitle} size="small" /></Grid>}
-      {formik.values.employeeName && <Grid item><Typography variant="body2" sx={{ mb: "5px" }}>Employee Name</Typography>
-       <Chip label={formik.values.employeeName} size="small" /></Grid>}
-      {formik.values.customerPrice && <Grid item><Typography variant="body2" sx={{ mb: "5px" }}>Customer</Typography>
-       <Chip label={formik.values.customerPrice} size="small" /></Grid>}
-
-      {formik.values.selectedRecords.length !== 0 && <Grid item>
-       <Typography variant="body2" sx={{ mb: "5px" }}>Hard Goods</Typography>
-       <Grid container gap={.5}>
-        {formik.values.selectedRecords.map(record => (
-         <Grid item key={record.name}>
-          <Chip label={`${record.name} - ${record.price}`} size="small" />
-         </Grid>
-        ))}
+     <Grid item container flexDirection="column" sm={7} gap={4}>
+      {(
+       <Grid item>
+        <BasicTextFields
+         InputProps={{
+          readOnly: true,
+          notched: true,
+         }}
+         InputLabelProps={{ shrink: true }}
+         label="Order Title"
+         value={formik.values.orderTitle || "---"}
+         fullWidth
+        />
        </Grid>
-      </Grid>}
-
-      {formik.values.packaging.length !== 0 && <Grid item>
-       <Typography variant="body2" sx={{ mb: "5px" }}>Packaging</Typography>
-       <Grid container gap={.5}>
-        {formik.values.packaging.map(record => (
-         <Grid item key={record.name}>
-          <Chip label={`${record.name} - ${record.price}`} size="small" />
-         </Grid>
-        ))}
+      )}
+      {(
+       <Grid item>
+        <BasicTextFields
+         InputProps={{
+          readOnly: true,
+          notched: true,
+         }}
+         InputLabelProps={{ shrink: true }}
+         label="Employee Name"
+         value={formik.values.employeeName || "---"}
+         fullWidth
+        />
        </Grid>
-      </Grid>}
+      )}
 
-      {formik.values.freshFlowerQuantity.length !== 0 && <Grid item>
-       <Typography variant="body2" sx={{ mb: "5px" }}>Fresh Flower Quantity</Typography>
-       <Grid container gap={.5}>
-        {formik.values.freshFlowerQuantity.map(record => (
-         <Grid item key={record.name}>
-          <Chip label={`${record.name} - ${record.price}`} size="small" />
-         </Grid>
-        ))}
+      {(
+       <Grid item container flexWrap="nowrap" gap={1}>
+        <Grid item>
+         <BasicTextFields
+          InputProps={{
+           readOnly: true,
+           notched: true,
+          }}
+          InputLabelProps={{ shrink: true }}
+          label="Customer Price"
+          value={formik.values.customerPrice || 0}
+          fullWidth
+         />
+        </Grid>
+        <Grid item>
+         <BasicTextFields
+          InputProps={{
+           readOnly: true,
+           notched: true,
+          }}
+          InputLabelProps={{ shrink: true }}
+          label="Greens"
+          value={`${20 * +formik.values.customerPrice / 100}`}
+          fullWidth
+         />
+        </Grid>
+        <Grid item>
+         <BasicTextFields
+          InputProps={{
+           readOnly: true,
+           notched: true,
+          }}
+          InputLabelProps={{ shrink: true }}
+          label="Wastage"
+          value={`${10 * +formik.values.customerPrice / 100}`}
+          fullWidth
+         />
+        </Grid>
        </Grid>
-      </Grid>}
+      )}
+
+      {(
+       <Grid item>
+        <BasicTextFields
+         InputProps={{
+          readOnly: true,
+          notched: true,
+         }}
+         InputLabelProps={{ shrink: true }}
+         label="Remaining Budget"
+         value={formik.values.remainingAmount || 0}
+         fullWidth
+        />
+       </Grid>
+      )}
+
+      <Grid item>
+       <Divider>
+        <Chip label="Records Details" size="small" />
+       </Divider>
+      </Grid>
+
+      {(
+       <Grid item display={"flex"}>
+        <Typography variant="h6" whiteSpace={"nowrap"} sx={{ mr: 1 }}>
+         Hard Goods:{" "}
+        </Typography>
+        <Grid container gap={0.5}>
+         {formik.values?.selectedRecords?.map((record) => (
+          <Grid item key={record.name}>
+           <Chip label={formik.values?.selectedRecords?.length !== 0 && `${record.name} - ${record.price}`} size="small" />
+          </Grid>
+         ))}
+        </Grid>
+       </Grid>
+      )}
+
+      {(
+       <Grid item>
+        <BasicTextFields
+         InputProps={{
+          readOnly: true,
+          notched: true,
+         }}
+         InputLabelProps={{ shrink: true }}
+         label="Total Hard Goods Price"
+         value={`$${formik.values.selectedRecords?.reduce((acc, obj) => +obj.price.replace("$", "") + acc, 0)}`}
+         fullWidth
+        />
+       </Grid>
+      )}
+
+      {(
+       <Grid item display={"flex"}>
+        <Typography variant="h6" sx={{ mr: 1 }}>
+         Packaging:
+        </Typography>
+        <Grid container gap={0.5}>
+         {formik?.values?.packaging?.map((record) => (
+          <Grid item key={record.name}>
+           <Chip label={formik?.values?.packaging?.length !== 0 && `${record.name} - ${record.price}`} size="small" />
+          </Grid>
+         ))}
+        </Grid>
+       </Grid>
+      )}
+
+      {(
+       <Grid item>
+        <BasicTextFields
+         InputProps={{
+          readOnly: true,
+          notched: true,
+         }}
+         InputLabelProps={{ shrink: true }}
+         label="Total Packaging Price"
+         value={`$${formik.values.packaging?.reduce((acc, obj) => +obj.price.replace("$", "") + acc, 0)}`}
+         fullWidth
+        />
+       </Grid>
+      )}
+
+      {(
+       <Grid item display={"flex"}>
+        <Typography variant="h6" whiteSpace={"nowrap"} sx={{ mr: 1 }}>
+         Fresh Flower Quantity:
+        </Typography>
+        <Grid container gap={0.5}>
+         {formik.values?.freshFlowerQuantity?.map((record) => (
+          <Grid item key={record.name}>
+           <Chip label={formik.values?.freshFlowerQuantity?.length !== 0 && `${record.name} - ${record.price}`} size="small" />
+          </Grid>
+         ))}
+        </Grid>
+       </Grid>
+      )}
+
+      {(
+       <Grid item>
+        <BasicTextFields
+         InputProps={{
+          readOnly: true,
+          notched: true,
+         }}
+         InputLabelProps={{ shrink: true }}
+         label="Total Fresh Flower Price"
+         value={`$${formik.values.freshFlowerQuantity?.reduce((acc, obj) => +obj.price.replace("$", "") + acc, 0)}`}
+         fullWidth
+        />
+       </Grid>
+      )}
+
+      {/* Rest */}
+
+      {(
+       <Grid item>
+        <BasicTextFields
+         InputProps={{
+          readOnly: true,
+          notched: true,
+         }}
+         InputLabelProps={{ shrink: true }}
+         label="Remaining"
+         value={"$5.00"}
+         fullWidth
+        />
+       </Grid>
+      )}
+
+      {(
+       <Grid item>
+        <BasicTextFields
+         InputProps={{
+          readOnly: true,
+          notched: true,
+         }}
+         InputLabelProps={{ shrink: true }}
+         label="Quantity"
+         value={"$5.00"}
+         fullWidth
+        />
+       </Grid>
+      )}
+
+      {(
+       <Grid item>
+        <BasicTextFields
+         InputProps={{
+          readOnly: true,
+          notched: true,
+         }}
+         InputLabelProps={{ shrink: true }}
+         label="Price"
+         value={"$5.00"}
+         fullWidth
+        />
+       </Grid>
+      )}
+
+      {(
+       <Grid item>
+        <BasicTextFields
+         InputProps={{
+          readOnly: true,
+          notched: true,
+         }}
+         InputLabelProps={{ shrink: true }}
+         label="Flower Price"
+         value={"$5.00"}
+         fullWidth
+        />
+       </Grid>
+      )}
      </Grid>
     </Grid>
 
-        <Button type="submit" sx={{ display: "none" }} ref={submitButtonRef} />
-      </Form>
-    </FormikProvider>
-  );
+    <Button type="submit" sx={{ display: "none" }} ref={submitButtonRef} />
+   </Form>
+  </FormikProvider>
+ );
 };
 
 export default forwardRef<React.ReactNode, OrderCardProps>(OrderForm);
