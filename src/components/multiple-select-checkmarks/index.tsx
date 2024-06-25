@@ -1,10 +1,8 @@
-import * as React from "react";
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
-import Checkbox from "@mui/material/Checkbox";
-import { useFormikContext } from "formik";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
+// MultipleSelectCheckmarks.tsx
+import * as React from 'react';
+import Checkbox from '@mui/material/Checkbox';
+import { useField, useFormikContext } from "formik";
+import { Autocomplete, FormHelperText, TextField } from "@mui/material";
 
 interface Record {
   name: string;
@@ -18,8 +16,9 @@ interface Props {
 }
 
 const MultipleSelectCheckmarks: React.FC<Props> = ({ name, label, records }) => {
-  const { values, setFieldValue } = useFormikContext<{ [key: string]: Record[] }>();
-  const selectedRecords = values[name] || [];
+ const { values, setFieldValue } = useFormikContext<{ [key: string]: Record[]; }>();
+ const [ field, meta ] = useField(name)
+ const selectedRecords = values[name] || [];
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: Record[]) => {
     setFieldValue(name, newValue);
