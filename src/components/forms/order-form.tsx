@@ -169,7 +169,7 @@ const OrderForm = (
             <Grid item xs={12} container alignItems="center">
               <Grid item xs={12} sm={3}>
                 <Typography variant="h6" sx={{ display: { xs: "none", sm: "initial" } }}>
-                  Hard Goods
+                  Hard Goods ($)
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={9}>
@@ -198,7 +198,7 @@ const OrderForm = (
             <Grid item xs={12} container alignItems="center">
               <Grid item xs={12} sm={3}>
                 <Typography variant="h6" sx={{ display: { xs: "none", sm: "initial" } }}>
-                  Packaging
+                  Packaging ($)
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={9}>
@@ -227,7 +227,7 @@ const OrderForm = (
             <Grid item xs={12} container alignItems="center">
               <Grid item xs={12} sm={3}>
                 <Typography variant="h6" sx={{ display: { xs: "none", sm: "initial" } }}>
-                  Fresh Flower qty
+                  Fresh Flower qty ($)
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={9}>
