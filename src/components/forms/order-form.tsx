@@ -436,7 +436,7 @@ const OrderForm = (
                   {formik.values?.selectedRecords?.length !== 0 ? (
                     formik.values?.selectedRecords?.map(record => (
                       <Grid item key={record.name}>
-                        <Chip label={`${record.name} - ${record.price}`} size="small" />
+                        <Chip label={`${record.name} - $${record.price}`} size="small" />
                       </Grid>
                     ))
                   ) : (
@@ -471,7 +471,7 @@ const OrderForm = (
                   {formik?.values?.packaging?.length !== 0 ? (
                     formik?.values?.packaging?.map(record => (
                       <Grid item key={record.name}>
-                        <Chip label={`${record.name} - ${record.price}`} size="small" />
+                        <Chip label={`${record.name} - $${record.price}`} size="small" />
                       </Grid>
                     ))
                   ) : (
@@ -506,7 +506,7 @@ const OrderForm = (
                   {formik.values?.freshFlowerQuantity?.length !== 0 ? (
                     formik.values?.freshFlowerQuantity?.map(record => (
                       <Grid item key={record.name}>
-                        <Chip label={`${record.name} - ${record.price}`} size="small" />
+                        <Chip label={`${record.name} - $${record.price}`} size="small" />
                       </Grid>
                     ))
                   ) : (
