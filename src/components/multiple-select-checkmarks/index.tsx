@@ -31,13 +31,13 @@ const MultipleSelectCheckmarks: React.FC<Props> = ({ name, label, records }) => 
         // id={name}
         options={records}
         disableCloseOnSelect
-        getOptionLabel={option => `${option.name} (${option.price})`}
+        getOptionLabel={option => `${option.name} ($${option.price})`}
         value={selectedRecords}
         onChange={handleChange}
         renderOption={(props, option, { selected }) => (
           <Box component="li" {...props}>
             <Checkbox style={{ marginRight: 8 }} checked={selected} />
-            <span>{`${option.name} (${option.price})`}</span>
+            <span>{`${option.name} ($${option.price})`}</span>
           </Box>
         )}
         renderInput={params => (

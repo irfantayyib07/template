@@ -1,10 +1,8 @@
 export const NAMES = [
- 'Oliver Hansen',
- 'Van Henry',
- 'April Tucker',
- 'Mark',
- 'Jane',
- 'John',
+ 'Mark Jhone',
+ 'Jane Doe',
+ 'John Albert',
+ 'Mark Phillips'
 ];
 
 export const RECORDS = [

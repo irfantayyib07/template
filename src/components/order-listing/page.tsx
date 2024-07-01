@@ -51,8 +51,8 @@ const OrderListing = () => {
           key={index}
           orderTitle={order.orderTitle}
           employeeName={order.employeeName}
-          customerPrice={order.customerPrice}
-          remainingAmount={order.remainingAmount}
+          customerPrice={`$${order.customerPrice}`}
+          remainingAmount={`$${order.remainingAmount}`}
         />
       ))}
     </div>

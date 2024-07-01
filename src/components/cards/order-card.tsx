@@ -16,7 +16,8 @@ type OrderCardProps = {
 
 const OrderCard: React.FC<OrderCardProps> = props => {
   const { orderTitle, employeeName, customerPrice, remainingAmount } = props;
-
+  // const customerPriceNumber = +customerPrice.replace("$", "");
+  // const remainingAmountNumber = +remainingAmount.replace("$", "");
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleOpenDialog = () => {
@@ -46,7 +47,8 @@ const OrderCard: React.FC<OrderCardProps> = props => {
   ];
 
   const modalRef = useRef();
-
+  // console.log(remainingAmount);
+  // console.log(customerPriceNumber);
   return (
     <>
       <Card sx={{ position: "relative", maxWidth: 345, minWidth: 320, p: 2, m: 1 }}>
@@ -92,7 +94,7 @@ const OrderCard: React.FC<OrderCardProps> = props => {
               <Stack display="flex" flexDirection="row" alignItems="center">
                 <MoneyOffIcon fontSize="small" color="action" />
                 <Typography variant="body2" color="text.secondary" ml={1}>
-                  REMAINING $
+                  REMAINING
                 </Typography>
               </Stack>
               <Typography variant="body1" color="text.primary">

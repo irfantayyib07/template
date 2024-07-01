@@ -24,16 +24,16 @@ export default function ModeContextProvider({ children }: ModeContextProviderPro
     palette: {
       mode: mode,
       primary: {
-        main: "#1976d2",
+        main: "#00308F",
       },
       secondary: {
         main: "#dc004e",
       },
       background: {
-        default: mode === "light" ? "#FFFFFF" : "#333333", // default background color based on mode
+        default: mode === "light" ? "#f1f1fd" : "#333333", // default background color based on mode
       },
       text: {
-        primary: mode === "light" ? "#333333" : "#FFFFFF", //  primary text color based on mode
+        primary: mode === "light" ? "#333333" : "#f1f1f1", //  primary text color based on mode
       },
     },
     typography: {
