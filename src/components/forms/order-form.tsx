@@ -126,7 +126,7 @@ const OrderForm = (
             className="h-full overflow-y-auto scrollable-container"
             px={1}
           >
-            <Grid item xs={12} container alignItems="center" className="mt-2">
+            <Grid item xs={12} container alignItems="center" className="mt-3" height={"fit-content"}>
               <Grid item xs={12} sm={3}>
                 <Typography variant="h6" sx={{ display: { xs: "none", sm: "initial" } }}>
                   Order Title
@@ -145,7 +145,7 @@ const OrderForm = (
                 />
               </Grid>
             </Grid>
-            <Grid item xs={12} container alignItems="center">
+            <Grid item xs={12} container alignItems="center" height={"fit-content"}>
               <Grid item xs={12} sm={3}>
                 <Typography variant="h6" sx={{ display: { xs: "none", sm: "initial" } }}>
                   Employee Name
@@ -155,7 +155,7 @@ const OrderForm = (
                 <SingleSelect name="employeeName" label="Select the Name" options={NAMES} />
               </Grid>
             </Grid>
-            <Grid item xs={12} container alignItems="center">
+            <Grid item xs={12} container alignItems="center" height={"fit-content"}>
               <Grid item xs={12} sm={3}>
                 <Typography variant="h6" sx={{ display: { xs: "none", sm: "initial" } }}>
                   Customer Budget
@@ -175,12 +175,12 @@ const OrderForm = (
               </Grid>
             </Grid>
 
-            <Grid item xs={12}>
+            <Grid item xs={12} height={"fit-content"}>
               <Divider>
                 <Chip color="primary" label="Records Details" size="small" />
               </Divider>
             </Grid>
-            <Grid item xs={12} container alignItems="center">
+            <Grid item xs={12} container alignItems="center" height={"fit-content"}>
               <Grid item xs={12} sm={3}>
                 <Typography variant="h6" sx={{ display: { xs: "none", sm: "initial" } }}>
                   Hard Goods ($)
@@ -190,7 +190,7 @@ const OrderForm = (
                 <MultipleSelectCheckmarks name="selectedRecords" label="Select Records" records={RECORDS} />
               </Grid>
             </Grid>
-            <Grid item xs={12} container alignItems="center">
+            <Grid item xs={12} container alignItems="center" height={"fit-content"}>
               <Grid item xs={12} sm={3}>
                 <Typography variant="h6" sx={{ display: { xs: "none", sm: "initial" } }}>
                   Packaging ($)
@@ -200,7 +200,7 @@ const OrderForm = (
                 <MultipleSelectCheckmarks name="packaging" label="Select Packaging" records={PACKING} />
               </Grid>
             </Grid>
-            <Grid item xs={12} container alignItems="center">
+            <Grid item xs={12} container alignItems="center" height={"fit-content"}>
               <Grid item xs={12} sm={3}>
                 <Typography variant="h6" sx={{ display: { xs: "none", sm: "initial" } }}>
                   Fresh Flower qty ($)
